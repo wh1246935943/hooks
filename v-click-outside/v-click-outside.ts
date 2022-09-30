@@ -8,6 +8,8 @@ export default {
   * @param el - 当前指令绑定的元素的真实Dom
   * @param binding - 指令上绑定的参数,包含指令传入的value，和指令上的带的参数、修饰符等。
   * mounted钩子还有vnode, prevVnode这两个参数
+  * 
+  * 这里的mounted方法名换成bind,即为vue2的写法
   */
   mounted: (el: VueElement, binding: DirectiveBinding) => {
 
@@ -85,6 +87,9 @@ export default {
 
   },
 
+  /**
+   * 这里的unmounted方法名换成unbind,即为vue2的写法
+   */
   unmounted: (el: VueElement) => {
     // 卸载指令后移除el关联的所有自定义事件，并从记录中删除
     const [f1, f2] = destroyMap.get(el);
