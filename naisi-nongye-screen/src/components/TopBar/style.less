@@ -1,0 +1,92 @@
+.top-bar {
+  height: 88px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  line-height: 88px;
+  overflow-x: clip;
+  padding: 0 36px 0 20px;
+  .topbar_bj {
+    width: 98%;
+    height: 125px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: -1;
+  }
+  & > div {
+    height: 100%;
+  }
+  .left,
+  .right {
+    width: 25%;
+    display: flex;
+    align-items: center;
+  }
+  .right {
+    justify-content: flex-end;
+    // font-family: PangMenZhengDaoRegular;
+    .time-line {
+      width: 2px;
+      height: 29px;
+      border: 1px solid #9EC5E7;
+      opacity: 0.35;
+      margin: 0 24px;
+    }
+    .time-y-m-d{
+      font-size: 30px;
+      font-family: longzhoufeng;
+      font-weight: 400;
+      color: #CDD6E3;
+    }
+    .time-w-icon{
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      margin-right: 12px;
+    }
+    .time-w{
+      font-size: 25px;
+      font-family: Microsoft YaHei;
+      font-weight: bold;
+      color: #CDD6E3;
+    }
+    .go-back{
+      background-image: url('@/assets/district-level/return.png');
+      background-repeat: no-repeat;
+      background-size: cover;
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+    }
+  }
+  .left{
+    span{
+      font-size: 24px;
+      font-family: Microsoft YaHei;
+      font-weight: 400;
+      color: #CDD6E3;
+    }
+    img{
+      width: 32px;
+      margin-right: 24px;
+      transform: translateY(2px);
+    }
+  }
+  .center {
+    width: 50%;
+    flex: 1;
+    text-align: center;
+
+    font-size: 55px;
+    font-family: PangMenZhengDaoRegular;
+    font-weight: 400;
+    color: #FFFFFF;
+
+    background: linear-gradient(0deg, #B9CFFF 0%, #FFFFFF 99.0478515625%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}

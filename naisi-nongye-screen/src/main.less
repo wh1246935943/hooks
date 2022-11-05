@@ -1,0 +1,41 @@
+@font-face {
+  font-family: PangMenZhengDaoRegular; //自定义字体名称
+  src: url('./assets/font/PangMenZhengDaoRegular.ttf');
+}
+@font-face {
+  font-family: longzhoufeng; //自定义字体名称
+  src: url('./assets/font/longzhoufeng.ttf');
+}
+
+@import './styles/initialization.less';
+
+:root {
+  --naisi-white: #ffffff;
+  --naisi-white-soft: #f8f8f8;
+  --naisi-white-mute: #f2f2f2;
+
+  --naisi-black: #181818;
+  --naisi-black-soft: #222222;
+  --naisi-black-mute: #282828;
+
+  --naisi-indigo: #2c3e50;
+
+  --naisi-text-light-1: var(--naisi-indigo);
+  --naisi-text-light-2: rgba(60, 60, 60, 0.66);
+}
+
+
+
+html,
+body,
+#app {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #0C2A5E;
+}
+
+.text-indent{
+  text-indent: 40px;
+  display: inline-block;
+}
