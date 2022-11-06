@@ -1,5 +1,6 @@
 
 import { defineComponent } from 'vue';
+import { pointData } from './../../data';
 
 import './style.less';
  
@@ -50,6 +51,9 @@ export default defineComponent({
           <svg
             class="map-svg"
             viewBox="0 0 1337 859"
+            onClick={(e) => {
+              navigator.clipboard.writeText(`{x: ${e.offsetX}, y: ${e.offsetY}, name: 'xxxx'},\n`)
+            }}
           >
             <g>
               <image
@@ -85,6 +89,32 @@ export default defineComponent({
                   `}
                 >安塘村</text>
               </g>
+            </g>
+            <g v-show={mapType === '3D'}>
+              {
+                pointData.map(({x, y, name}) => {
+                  return (
+                    <g style={`transform: translate(${x}px, ${y}px);`}>
+                      <image
+                        height="18"
+                        width="83"
+                        style="transform: scale(1.3, 1.5) translate(-9px, -3px);"
+                        href={new URL(`@/assets/district-level/text-box-1.png`, import.meta.url).href}
+                      />
+                      <text
+                        style={`
+                          fill: #ffffff;
+                          text-shadow: rgb(3 19 43 / 15%) 2px 0px 4px;
+                          font-size: 14px;
+                          font-family: Microsoft YaHei;
+                          font-weight: 400;
+                          transform: translate(32px, 13px);
+                        `}
+                      >{name}</text>
+                    </g>
+                  )
+                })
+              }
             </g>
             {
               (isInfoBox || mapType === 'GIS') && (
