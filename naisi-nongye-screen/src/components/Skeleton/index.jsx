@@ -47,6 +47,7 @@ export default defineComponent({
               background: getImgUrl()
             }}
           >
+            <div class="global-bg-shadow"></div>
             <TopBar title={title} locate="淮南市 孔店乡" />
             <div class="content">
               {slots?.default?.()}
