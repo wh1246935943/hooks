@@ -4,6 +4,7 @@ import Skeleton from '@/components/Skeleton';
 import Card from '@/components/Card';
 import Map from './Map';
 import { statisticsData, videoData } from './../data';
+import { initResourceStatisticsChart } from '../chart';
 
 import './style.less';
  
@@ -20,7 +21,7 @@ export default defineComponent(() => {
   }
 
   onMounted(() => {
-    //...
+    initResourceStatisticsChart()
   })
  
   return () => {
@@ -74,7 +75,10 @@ export default defineComponent(() => {
           />
           <div class="dl-right">
             <Card title="土地资源统计" style="width: 100%;height: 416px">
-              
+              <div
+                id="military-statistics"
+                style="width: 100%;height: 100%"
+              />
             </Card>
             <Card title="监控视频" style="margin-top: 40px;height: 57%;">
               <div className="video-data">

@@ -52,7 +52,13 @@ export default defineComponent({
             class="map-svg"
             viewBox="0 0 1337 859"
             onClick={(e) => {
-              navigator.clipboard.writeText(`{x: ${e.offsetX}, y: ${e.offsetY}, name: 'xxxx'},\n`)
+              /**
+               * 秘密武器
+               */
+              // navigator.clipboard.writeText(`{x: ${e.offsetX}, y: ${e.offsetY}, name: 'xxxx'},\n`);
+              // const dot = document.createElement('div');
+              // dot.style = `width: 10px;height: 10px; background: red; position: absolute; top: ${e.pageY}px; left: ${e.pageX}px`;
+              // document.body.appendChild(dot);
             }}
           >
             <g>
@@ -98,7 +104,7 @@ export default defineComponent({
                       <image
                         height="18"
                         width="83"
-                        style="transform: scale(1.3, 1.5) translate(-9px, -3px);"
+                        style="transform: scale(1.3, 1.5) translate(7px, -3px);"
                         href={new URL(`@/assets/district-level/text-box-1.png`, import.meta.url).href}
                       />
                       <text
@@ -108,7 +114,7 @@ export default defineComponent({
                           font-size: 14px;
                           font-family: Microsoft YaHei;
                           font-weight: 400;
-                          transform: translate(32px, 13px);
+                          transform: translate(50px, 13px);
                         `}
                       >{name}</text>
                     </g>
