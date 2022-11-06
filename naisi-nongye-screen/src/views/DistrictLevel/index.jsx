@@ -3,7 +3,7 @@ import { defineComponent, reactive, onMounted } from 'vue';
 import Skeleton from '@/components/Skeleton';
 import Card from '@/components/Card';
 import Map from './Map';
-import { statisticsData } from './../data';
+import { statisticsData, videoData } from './../data';
 
 import './style.less';
  
@@ -72,7 +72,63 @@ export default defineComponent(() => {
             isInfoBox={isInfoBox}
             setState={setState}
           />
-          <div class="dl-right"></div>
+          <div class="dl-right">
+            <Card title="土地资源统计" style="width: 100%;height: 416px">
+              
+            </Card>
+            <Card title="监控视频" style="margin-top: 40px;height: 57%;">
+              <div className="video-data">
+                {
+                  videoData.map((item, index) => {
+                    return (
+                      <div key={index} class="sd-item">
+                        <video
+                          class={`map-3d-video map-3d-video_${index}`}
+                          style="width: 100%; height: 100%"
+                          src={item.src}
+                          onPause={() => {
+                            const icon = document.querySelector(`.play-icon_${index}`);
+                            icon.style.display = ''
+                          }}
+                          onPlay={() => {
+                            const icon = document.querySelector(`.play-icon_${index}`);
+                            const preview = document.querySelector(`.preview-img_${index}`);
+                            icon.style.display = 'none';
+                            preview.style.display = 'none'
+                          }}
+                          onClick={(e) => {
+                            const video = document.querySelector(`.map-3d-video_${index}`);
+                            if (video.paused) return;
+                            video.pause();
+                          }}
+                        />
+                        <img
+                          class={`position-center play-icon_${index}`}
+                          src={new URL(`@/assets/district-level/broadcast.png`, import.meta.url).href}
+                          onClick={(e) => {
+                            const video = document.querySelector(`.map-3d-video_${index}`);
+                            if (!video?.paused) return;
+                            video.play();
+                          }}
+                        />
+                        <img
+                          class={`preview-img preview-img_${index}`}
+                          src={new URL(`@/assets/village-level/pic-3.png`, import.meta.url).href}
+                        />
+                        <div className="info-bar">
+                          <img
+                            src={new URL(`@/assets/district-level/monitor.png`, import.meta.url).href}
+                          />
+                          <span>{item.value}</span>
+                          <span>{item.time}</span>
+                        </div>
+                      </div>
+                    )
+                  })
+                }
+              </div>
+            </Card>
+          </div>
         </div>
       </Skeleton>
     )

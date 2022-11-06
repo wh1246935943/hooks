@@ -59,4 +59,37 @@ export const statisticsData = [
     unit: '万亩',
     color: '#FFE777'
   }
+];
+
+export const videoData = [
+  {
+    src: 'https://www.runoob.com/try/demo_source/movie.mp4',
+    value:'154587',
+    time: '2022-10-26'
+  },
+  {
+    src: 'https://www.runoob.com/try/demo_source/movie.mp4',
+    value:'154587',
+    time: '2022-10-26'
+  },
+  {
+    src: 'https://www.runoob.com/try/demo_source/movie.mp4',
+    value:'154587',
+    time: '2022-10-26'
+  },
+  {
+    src: 'https://www.runoob.com/try/demo_source/movie.mp4',
+    value:'154587',
+    time: '2022-10-26'
+  },
+  {
+    src: 'https://www.runoob.com/try/demo_source/movie.mp4',
+    value:'154587',
+    time: '2022-10-26'
+  },
+  {
+    src: 'https://www.runoob.com/try/demo_source/movie.mp4',
+    value:'154587',
+    time: '2022-10-26'
+  }
 ]
