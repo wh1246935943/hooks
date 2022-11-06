@@ -118,6 +118,32 @@ export const pointData = [
   {x: 287, y: 475, name: 'xxxx'},
   {x: 361, y: 389, name: 'xxxx'},
   {x: 125, y: 457, name: 'xxxx'},
+];
 
+export const abnormalData = [
+  {
+    type: 'error',
+    id: '1',
+    content: '传感器异常传感器异常传感器异常传感器异常传感器异常传感器异常',
+    time: '2022-11-04 18:00'
+  },
+  {
+    type: 'warning',
+    id: '2',
+    content: '传感器异常传感器异常传感器异常传感器异常传感器异常传感器异常',
+    time: '2022-11-04 18:00'
+  },
+  {
+    type: 'tip',
+    id: '3',
+    content: '传感器异常传感器异常传感器异常传感器异常传感器异常传感器异常',
+    time: '2022-11-04 18:00'
+  }
+];
 
+export const greenFangkongData = [
+  {color: '#FFE777', title: '昨日识别虫数', value: 2456},
+  {color: '#19D6FF', title: '累计识别虫数', value: 5314},
+  {color: '#37FFC9', title: '检测虫子类型', value: 3547},
+  {color: '#91CCFF', title: '检测虫子数量', value: 3025},
 ]
