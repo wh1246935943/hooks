@@ -169,3 +169,11 @@ export const realtimeMonitor = [
   {color: '#FFE777', name: '土壤温度', icon: 'soil-temperature', value: '15', unit: '℃'},
   {color: '#00B5FF', name: '土壤湿度', icon: 'soil-moisture', value: '25', unit: '%rh'},
 ]
+
+export const dynamicData = [
+  {color: '#00B5FF', name: '虫情测报(台)', value: 1 },
+  {color: '#37FFC9', name: '气象监测(台)', value: 2 },
+  {color: '#19D6FF', name: '土壤墒情监测(台)', value: 2 },
+  {color: '#FFE777', name: '杀虫灯(台)', value: 10 },
+  {color: '#C2ADFF', name: '田间摄像头(台) ', value: 20 }
+]
