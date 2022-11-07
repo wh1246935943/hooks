@@ -1,4 +1,5 @@
 /**
+ * 独家完美的
  * 开发模式下适配全屏界面
  */
 export const scaleContainer = (selector = '.basic-container') => {
@@ -20,7 +21,7 @@ export const scaleContainer = (selector = '.basic-container') => {
 /**
  * 精准的且不会重复加速的定时器
  */
- export function poller({
+export function poller({
   callback = () => {},
   param = null,
   time = 3000,
