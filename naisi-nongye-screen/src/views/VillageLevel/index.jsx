@@ -5,6 +5,7 @@ import Card from '@/components/Card';
 import Map from './Map';
 import { abnormalData, videoData, greenFangkongData, weatherData, realtimeMonitor } from './../data';
 import { initPlantingScale } from '../chart';
+import { setRollEffect } from '@/utils/utils'
 
 import './style.less';
  
@@ -13,7 +14,8 @@ export default defineComponent(() => {
   const state = reactive({
     title: '农业监控数据展示平台',
     mapType: 'VIG',
-    isInfoBox: true
+    isInfoBox: true,
+    abnormalItem: null
   });
 
   const setState = (param) => {
@@ -23,13 +25,33 @@ export default defineComponent(() => {
   const getImageUrl = (name) => {
     return new URL(`../../assets/village-level/${name}.png`, import.meta.url).href
   }
+  /**
+   * 这里通过事件委托的方式添加点击事件
+   * 因为vue在事件绑定是是正对单个元素绑定的，
+   * 在列表的滚动效果实现时会对元素拷贝，
+   * 此时点击新拷贝的元素点击事件将会消失
+   */
+  const openAbnormalBox = (e) => {
+    e.stopPropagation();
+    const { children } = e.currentTarget;
+    const item = Array.from(children).find((item) => item.contains(e.target))
+    if (!item) return;
+    setState({abnormalItem: abnormalData[item.dataset.index]})
+  }
 
   onMounted(() => {
-    initPlantingScale()
+    initPlantingScale();
+    setTimeout(() => {
+      setRollEffect({
+        key: '.abnormal-data-key',
+        content: '.abnormal-data > div',
+        paused: true
+      })
+    }, 1000);
   })
  
   return () => {
-    const { title, mapType, isInfoBox } = state;
+    const { title, mapType, isInfoBox, abnormalItem } = state;
 
     return (
       <Skeleton title={title} mapType={mapType}>
@@ -47,28 +69,34 @@ export default defineComponent(() => {
                 </span>
               </div>
             </Card>
-            <Card title="异常监测" style="margin-top: 30px;">
+            <Card title="异常监测" style="margin-top: 30px;" class="abnormal-data-key">
               <div className="abnormal-data">
-                {
-                  abnormalData.map((item) => {
-                    return (
-                      <div key={item.id} class="naisi-row">
-                        <div class="naisi-col-1">
-                          <img
-                            style="width: 21px;height: 21px"
-                            src={getImageUrl(item.type)}
-                          />
+                <div onClick={openAbnormalBox}>
+                  {
+                    abnormalData.map((item, index) => {
+                      return (
+                        <div
+                          key={item.id}
+                          class="naisi-row"
+                          data-index={index}
+                        >
+                          <div class="naisi-col-1">
+                            <img
+                              style="width: 21px;height: 21px"
+                              src={getImageUrl(item.type)}
+                            />
+                          </div>
+                          <div class="naisi-col-8">
+                            {item.content}
+                          </div>
+                          <div class="naisi-col-4">
+                            {item.time}
+                          </div>
                         </div>
-                        <div class="naisi-col-8">
-                          {item.content}
-                        </div>
-                        <div class="naisi-col-4">
-                          {item.time}
-                        </div>
-                      </div>
-                    )
-                  })
-                }
+                      )
+                    })
+                  }
+                </div>
               </div>
             </Card>
             <Card title="绿色防控" style="margin-top: 30px;">
@@ -226,6 +254,27 @@ export default defineComponent(() => {
             </Card>
           </div>
         </div>
+        {
+          !!abnormalItem && (
+            <div
+              v-click-outside={setState.bind(null, {abnormalItem: null})}
+              className="message-info-modal"
+            >
+              <i
+                className="mim-close"
+                onClick={setState.bind(null, {abnormalItem: null})}
+              />
+              <div className="mim-title">异常报警</div>
+              <div className="mim-content">
+                <div className="mimc-item" data-label="设备编号:"><div>{abnormalItem.number}</div></div>
+                <div className="mimc-item" data-label="报警事件:"><div>{abnormalItem.time}</div></div>
+                <div className="mimc-item" data-label="报警位置:"><div>淮南市孔店乡安塘村</div></div>
+                <div className="mimc-item" data-label="设备状态:"><div>温度过高</div></div>
+                <div className="mimc-item" data-label="详情信息:"><div>温度过高温度过高温度过高温度过高温度过高温度过高温度过高温度过高温度</div></div>
+              </div>
+            </div>
+          )
+        }
       </Skeleton>
     )
   }

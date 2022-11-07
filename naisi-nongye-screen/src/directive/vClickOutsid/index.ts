@@ -9,7 +9,7 @@ export default {
   * @param binding - 指令上绑定的参数,包含指令传入的value，和指令上的带的参数、修饰符等。
   * mounted钩子还有vnode, prevVnode这两个参数
   */
-   mounted: (el: VueElement, binding: DirectiveBinding) => {
+  mounted: (el: VueElement, binding: DirectiveBinding) => {
     /**
       * @param binding - 包含一下参数信息
       * value: 传递给指令的值,这个例子中的vlaue就是onClickOutside这个函数。

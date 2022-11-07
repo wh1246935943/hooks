@@ -124,20 +124,30 @@ export const abnormalData = [
   {
     type: 'error',
     id: '1',
+    number: 'SHSH12415',
     content: '传感器异常传感器异常传感器异常传感器异常传感器异常传感器异常',
     time: '2022-11-04 18:00'
   },
   {
     type: 'warning',
     id: '2',
+    number: 'SHSH1123123',
     content: '传感器异常传感器异常传感器异常传感器异常传感器异常传感器异常',
-    time: '2022-11-04 18:00'
+    time: '2022-11-10 20:10'
   },
   {
     type: 'tip',
     id: '3',
+    number: 'SHSH45345',
     content: '传感器异常传感器异常传感器异常传感器异常传感器异常传感器异常',
-    time: '2022-11-04 18:00'
+    time: '2022-11-11 23:34'
+  },
+  {
+    type: 'warning',
+    id: '4',
+    number: 'SHSH45348',
+    content: '传感器异常传感器异常传感器异常传感器异常传感器异常传感器异常',
+    time: '2022-11-12 09:23'
   }
 ];
 
