@@ -1,6 +1,7 @@
 import { defineComponent, onMounted } from 'vue';
 import { poller } from '@/utils/utils';
 import moment from 'moment/moment';
+import { useRouter } from 'vue-router'
 
 import topbar_bj from '@/assets/district-level/top.png';
 import locate from '@/assets/district-level/locate.png';
@@ -29,6 +30,8 @@ export default defineComponent({
   },
   setup(props) {
 
+    const router = useRouter()
+
     onMounted(() => {
       const d = {
         callback: () => {
@@ -54,7 +57,7 @@ export default defineComponent({
           <span class="time-line"></span>
           {
             props.isBack ? (
-              <span class="go-back"></span>
+              <span class="go-back" onClick={router.push.bind(null, {name: 'DistrictLevel'})}></span>
             ) : (
               <>
                 <img class="time-w-icon" src={weather_fine} />

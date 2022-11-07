@@ -14,6 +14,10 @@ export default defineComponent({
     mapType: {
       type: String,
       default: '3D'
+    },
+    locate: {
+      type: String,
+      default: ''
     }
   },
   slots: {
@@ -38,7 +42,7 @@ export default defineComponent({
     };
    
     return () => {
-      const { title } = props;
+      const { title, mapType, locate } = props;
       return (
         <div class="screen-out-box">
           <div
@@ -48,7 +52,7 @@ export default defineComponent({
             }}
           >
             <div class="global-bg-shadow"></div>
-            <TopBar title={title} locate="淮南市 孔店乡" />
+            <TopBar title={title} locate={locate} isBack={mapType === 'VIG'} />
             <div class="content">
               {slots?.default?.()}
             </div>

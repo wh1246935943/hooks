@@ -28,7 +28,7 @@ export default defineComponent(() => {
     const { title, mapType, isInfoBox } = state;
 
     return (
-      <Skeleton title={title} mapType={mapType}>
+      <Skeleton title={title} mapType={mapType} locate="淮南市 孔店乡">
         <div class="district-level">
           <div class="dl-left">
             <Card title="孔店乡简介">

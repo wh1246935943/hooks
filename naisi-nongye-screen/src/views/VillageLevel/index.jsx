@@ -54,7 +54,7 @@ export default defineComponent(() => {
     const { title, mapType, isInfoBox, abnormalItem } = state;
 
     return (
-      <Skeleton title={title} mapType={mapType}>
+      <Skeleton title={title} mapType={mapType} locate="淮南市 孔店乡 安塘村">
         <div class="district-level">
           <div class="dl-left">
             <Card title="安塘村简介">
