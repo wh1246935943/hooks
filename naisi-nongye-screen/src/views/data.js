@@ -147,3 +147,25 @@ export const greenFangkongData = [
   {color: '#37FFC9', title: '检测虫子类型', value: 3547},
   {color: '#91CCFF', title: '检测虫子数量', value: 3025},
 ]
+
+export const weatherData = [
+  {desc: '今天', date: '11月07日', icon: 'weather_fine', state: '晴', temp: '10-15', unit: '℃'},
+  {desc: '明天', date: '11月08日', icon: 'duoyun', state: '多云', temp: '10-15', unit: '℃'},
+  {desc: '周五', date: '11月09日', icon: 'wumai', state: '雾霾晴', temp: '10-15', unit: '℃'},
+  {desc: '周六', date: '11月10日', icon: 'xiayu', state: '雨', temp: '10-15', unit: '℃'},
+  {desc: '周日', date: '11月11日', icon: 'duoyun', state: '多云', temp: '10-15', unit: '℃'},
+  {desc: '周一', date: '11月12日', icon: 'wumai', state: '雾霾', temp: '10-15', unit: '℃'},
+  {desc: '周二', date: '11月13日', icon: 'duoyun', state: '多云', temp: '10-15', unit: '℃'},
+]
+
+export const realtimeMonitor = [
+  {color: '#00B5FF', name: '空气温度', icon: 'Air-temperature', value: '15', unit: '℃'},
+  {color: '#37FFC9', name: '空气湿度', icon: 'air-humidity', value: '25', unit: '%rh'},
+  {color: '#19D6FF', name: '风向', icon: 'wind-direction', value: '北风', unit: ''},
+  {color: '#FFE777', name: '风速', icon: 'wind-speed', value: '1', unit: 'm/s'},
+  {color: '#C2ADFF', name: '大气压', icon: 'barometric-pressure', value: '101', unit: 'kPa'},
+  {color: '#37FFC9', name: '光照度', icon: 'illuminance', value: '100', unit: 'lux'},
+  {color: '#37FFC9', name: '降雨量', icon: 'rainfall', value: '25', unit: 'mm'},
+  {color: '#FFE777', name: '土壤温度', icon: 'soil-temperature', value: '15', unit: '℃'},
+  {color: '#00B5FF', name: '土壤湿度', icon: 'soil-moisture', value: '25', unit: '%rh'},
+]

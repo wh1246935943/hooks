@@ -3,8 +3,8 @@ import { defineComponent, reactive, onMounted } from 'vue';
 import Skeleton from '@/components/Skeleton';
 import Card from '@/components/Card';
 import Map from './Map';
-import { abnormalData, videoData, greenFangkongData } from './../data';
-import { initResourceStatisticsChart, initPlantingScale } from '../chart';
+import { abnormalData, videoData, greenFangkongData, weatherData, realtimeMonitor } from './../data';
+import { initPlantingScale } from '../chart';
 
 import './style.less';
  
@@ -25,7 +25,6 @@ export default defineComponent(() => {
   }
 
   onMounted(() => {
-    initResourceStatisticsChart();
     initPlantingScale()
   })
  
@@ -137,21 +136,51 @@ export default defineComponent(() => {
             setState={setState}
           />
           <div class="dl-right">
-            <Card title="土地资源统计" style="width: 100%;height: 416px">
-              <div
-                id="military-statistics"
-                style="width: 100%;height: 100%"
-              />
+            <Card title="天气预报">
+              <div class="weather-forecast naisi-row">
+                {
+                  weatherData.map((item) => {
+                    return (
+                      <div className="weather-data-item">
+                        <span>{item.desc}</span>
+                        <span>{item.date}</span>
+                        <img src={getImageUrl(item.icon)} />
+                        <span>{item.state}</span>
+                        <span>{item.temp}{item.unit}</span>
+                      </div>
+                    )
+                  })
+                }
+              </div>
             </Card>
-            <Card title="监控视频" style="margin-top: 30px;height: 57%;">
+            <Card title="环境实时监测" style="margin-top: 20px">
+              <div class="realtime-monitor">
+                {
+                  realtimeMonitor.map((item) => {
+                    return (
+                      <div className="weather-data-item">
+                        <div class="wdi-icon">
+                          <img src={getImageUrl('bottom')} />
+                          <img className="position-center" src={getImageUrl(item.icon)} />
+                        </div>
+                        <div className="wdi-value">
+                          {item.name}<span style={{color: item.color}}>{item.value}</span>{item.unit}
+                        </div>
+                      </div>
+                    )
+                  })
+                }
+              </div>
+            </Card>
+            <Card title="监控视频" style="margin-top: 30px">
               <div className="video-data">
                 {
-                  videoData.map((item, index) => {
+                  videoData.slice(0, 4).map((item, index) => {
                     return (
                       <div key={index} class="sd-item">
                         <video
                           class={`map-3d-video map-3d-video_${index}`}
-                          style="width: 100%; height: 100%"
+                          style="width: 100%; height: 100%;transform: scale(1.58, 0.99);"
                           src={item.src}
                           onPause={() => {
                             const icon = document.querySelector(`.play-icon_${index}`);

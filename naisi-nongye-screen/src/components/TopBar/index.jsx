@@ -4,7 +4,7 @@ import moment from 'moment/moment';
 
 import topbar_bj from '@/assets/district-level/top.png';
 import locate from '@/assets/district-level/locate.png';
-import weather_fine from '@/assets/village-level/weather-fine.png';
+import weather_fine from '@/assets/village-level/weather_fine.png';
 
 import './style.less';
 
