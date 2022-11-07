@@ -4,7 +4,7 @@ import Skeleton from '@/components/Skeleton';
 import Card from '@/components/Card';
 import Map from './Map';
 import { abnormalData, videoData, greenFangkongData } from './../data';
-import { initResourceStatisticsChart } from '../chart';
+import { initResourceStatisticsChart, initPlantingScale } from '../chart';
 
 import './style.less';
  
@@ -26,6 +26,7 @@ export default defineComponent(() => {
 
   onMounted(() => {
     initResourceStatisticsChart();
+    initPlantingScale()
   })
  
   return () => {
@@ -115,7 +116,19 @@ export default defineComponent(() => {
               </div>
             </Card>
             <Card title="种植规模" style="margin-top: 30px;">
-              
+              <div className="planting-scale">
+                <div className="naisi-row-sa">
+                  <div className="naisi-col-5">
+                    园区总面积<span>2456</span>㎡
+                  </div>
+                  <div className="naisi-col-5">
+                    农作物类型<span>2456</span>种
+                  </div>
+                </div>
+                <div className="ps-chart">
+
+                </div>
+              </div>
             </Card>
           </div>
           <Map

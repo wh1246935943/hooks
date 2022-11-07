@@ -378,3 +378,200 @@ export function initResourceStatisticsChart() {
   
   military_statistics.setOption(option);
 }
+
+export function initPlantingScale() {
+  const chart1 = echarts.init(document.querySelector('.ps-chart'));
+  chart1.setOption({
+    title: {
+      show: true,
+      text: '农作物' + '\n' + '类型',
+      textStyle: {
+        color: 'rgba(145, 204, 255, 1)',
+        fontSize: 12,
+        lineHeight: 24
+      },
+      textAlign: 'center',
+      textVerticalAlign: 'center',
+      left: '28.5%',
+      top: '47%',
+    },
+    tooltip: {
+      trigger: 'item',
+    },
+    legend: {
+      selectedMode: false,
+      orient: 'vertical',
+      itemWidth: 8,
+      itemHeight: 8,
+      itemGap: 8,
+      type: 'scroll',
+      right: '15%',
+      top: 'center',
+      // padding: [10, 0],
+      textStyle: {
+        fontSize: 12,
+        color: 'rgba(145, 204, 255, 1)',
+      },
+      data: ['农作物类型1', '农作物类型2', '农作物类型3', '农作物类型4', '农作物类型5'],
+    },
+    series: [
+      {
+        name: '',
+        type: 'pie',
+        hoverAnimation: false,
+        legendHoverLink: false,
+        cursor: 'default',
+        radius: ['52%', '70%'],
+        center: ['30%', '50%'],
+        color: [
+          'rgba(255, 231, 119, 0.2)',
+          'rgba(90, 175, 255, 0.2)',
+          'rgba(55, 255, 201, 0.2)',
+          'rgba(0, 132, 255, 0.2)',
+          'rgba(25, 214, 255, 0.2)',
+        ],
+        label: {
+          show: false,
+        },
+        labelLine: {
+          show: false,
+        },
+
+        tooltip: {
+          show: false,
+        },
+
+        zlevel: 1,
+        itemStyle: {
+          normal: {
+            show: false,
+          },
+          ellipsis: {
+            show: false,
+          },
+        },
+
+        data: [
+          {
+            value: 20,
+            name: '',
+          },
+          {
+            value: 20,
+            name: '',
+          },
+          {
+            value: 20,
+            name: '',
+          },
+          {
+            value: 20,
+            name: '',
+          },
+          {
+            value: 20,
+            name: '',
+          },
+        ],
+      },
+      {
+        name: '',
+        type: 'pie',
+        zlevel: 2,
+        cursor: 'default',
+        hoverAnimation: false,
+        legendHoverLink: false,
+        radius: ['57%', '70%'],
+        center: ['30%', '50%'],
+        color: [
+          'rgba(255, 231, 119, 0.5)',
+          'rgba(90, 175, 255, 0.5)',
+          'rgba(55, 255, 201, 0.5)',
+          'rgba(0, 132, 255, 0.5)',
+          'rgba(25, 214, 255, 0.5)',
+        ],
+        labelLine: {
+          show: false,
+        },
+        itemStyle: {
+          normal: {
+            borderColor: '#0a1a2a',
+          },
+          ellipsis: {
+            borderColor: '#0a1a2a',
+          },
+        },
+        tooltip: {
+          show: false,
+        },
+        data: [
+          {
+            value: 20,
+            name: '',
+          },
+          {
+            value: 20,
+            name: '',
+          },
+          {
+            value: 20,
+            name: '',
+          },
+          {
+            value: 20,
+            name: '',
+          },
+          {
+            value: 20,
+            name: '',
+          },
+        ],
+      },
+      {
+        name: '农作物类型',
+        type: 'pie',
+        zlevel: 3,
+        radius: ['63%', '70%'],
+        center: ['30%', '50%'],
+        color: ['rgba(255, 231, 119, 1)',
+          'rgba(90, 175, 255, 1)',
+          'rgba(55, 255, 201, 1)',
+          'rgba(0, 132, 255, 1)',
+          'rgba(25, 214, 255, 1)',],
+        label: {
+          show: false,
+        },
+        labelLine: {
+          show: false,
+        },
+        itemStyle: {
+          shadowBlur: 15,
+          shadowColor: 'rgba(0, 0, 0, 0.3)',
+          borderColor: '#0a1a2a',
+        },
+        data: [
+          {
+            value: 20,
+            name: '农作物类型1',
+          },
+          {
+            value: 20,
+            name: '农作物类型2',
+          },
+          {
+            value: 20,
+            name: '农作物类型3',
+          },
+          {
+            value: 20,
+            name: '农作物类型4',
+          },
+          {
+            value: 20,
+            name: '农作物类型5',
+          },
+        ],
+      },
+    ],
+  });
+}
