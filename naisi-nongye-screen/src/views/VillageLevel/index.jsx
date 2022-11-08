@@ -189,10 +189,19 @@ export default defineComponent(() => {
                       <div className="weather-data-item">
                         <div class="wdi-icon">
                           <img src={getImageUrl('bottom')} />
-                          <img className="position-center" src={getImageUrl(item.icon)} />
+                          <img
+                            className="position-center"
+                            src={getImageUrl(item.icon)}
+                            />
                         </div>
                         <div className="wdi-value">
-                          {item.name}<span style={{color: item.color}}>{item.value}</span>{item.unit}
+                          {item.name}
+                          <span
+                            style={{color: item.color}}
+                          >
+                            {item.value}
+                          </span>
+                          {item.unit}
                         </div>
                       </div>
                     )
@@ -208,7 +217,7 @@ export default defineComponent(() => {
                       <div key={index} class="sd-item">
                         <video
                           class={`map-3d-video map-3d-video_${index}`}
-                          style="width: 100%; height: 100%;transform: scale(1.58, 0.99);"
+                          style="width: 100%; height: 100%;transform: scale(1.4, 0.99);"
                           src={item.src}
                           onPause={() => {
                             const icon = document.querySelector(`.play-icon_${index}`);

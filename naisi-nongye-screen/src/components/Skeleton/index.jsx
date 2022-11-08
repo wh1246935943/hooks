@@ -1,5 +1,5 @@
 
-import { defineComponent, ref, reactive, onMounted, defineProps, render } from 'vue';
+import { defineComponent, onMounted } from 'vue';
 import { scaleContainer } from '@/utils/utils.js'
 import TopBar from '../TopBar';
 
@@ -51,7 +51,16 @@ export default defineComponent({
               background: getImgUrl()
             }}
           >
-            <div class="global-bg-shadow"></div>
+            <div
+              class="global-bg-shadow"
+              style={{
+                background: {
+                  'GIS': 'radial-gradient(ellipse closest-side, #ffffff00 54%, #051525)',
+                  'VIG': 'radial-gradient(ellipse closest-side, #ffffff00, #051525)',
+                  '3D': 'radial-gradient(ellipse, #ffffff00, #051525)',
+                }[mapType]
+              }}
+            ></div>
             <TopBar title={title} locate={locate} isBack={mapType === 'VIG'} />
             <div class="content">
               {slots?.default?.()}
