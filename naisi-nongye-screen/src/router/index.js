@@ -8,7 +8,7 @@ const router = createRouter({
       path: '/',
       name: 'App',
       component: App,
-      redirect: '/VillageLevel',
+      redirect: '/DistrictLevel',
       children: [
         {
           path: '/VillageLevel',
