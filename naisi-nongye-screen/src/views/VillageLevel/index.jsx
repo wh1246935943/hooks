@@ -8,7 +8,7 @@ import { initPlantingScale } from '../chart';
 import { setRollEffect } from '@/utils/utils'
 
 import './style.less';
- 
+
 export default defineComponent(() => {
 
   const state = reactive({
@@ -36,7 +36,7 @@ export default defineComponent(() => {
     const { children } = e.currentTarget;
     const item = Array.from(children).find((item) => item.contains(e.target))
     if (!item) return;
-    setState({abnormalItem: abnormalData[item.dataset.index]})
+    setState({ abnormalItem: abnormalData[item.dataset.index] })
   }
 
   onMounted(() => {
@@ -49,7 +49,7 @@ export default defineComponent(() => {
       })
     }, 1000);
   })
- 
+
   return () => {
     const { title, mapType, isInfoBox, abnormalItem } = state;
 
@@ -101,7 +101,7 @@ export default defineComponent(() => {
             </Card>
             <Card title="绿色防控" style="margin-top: 30px;">
               <div className="green-fangkong naisi-row">
-                <div class="naisi-col-5 gf-icon">
+                <div class="naisi-col-6 gf-icon">
                   <img
                     src={getImageUrl('insect-bj1')}
                   />
@@ -112,7 +112,7 @@ export default defineComponent(() => {
                     src={getImageUrl('insect')}
                   />
                 </div>
-                <div class="naisi-col-7">
+                <div class="naisi-col-6">
                   {
                     greenFangkongData.map((item) => {
                       return (
@@ -129,10 +129,10 @@ export default defineComponent(() => {
                               }}
                             />
                           </div>
-                          <div class="naisi-col-6">
+                          <div class="naisi-col-5" style="font-size: 15px">
                             {item.title}
                           </div>
-                          <div class="naisi-col-4" style={{color: item.color}}>
+                          <div class="naisi-col-4" style={{ color: item.color }}>
                             {item.value}
                           </div>
                         </div>
@@ -192,12 +192,12 @@ export default defineComponent(() => {
                           <img
                             className="position-center"
                             src={getImageUrl(item.icon)}
-                            />
+                          />
                         </div>
                         <div className="wdi-value">
                           {item.name}
                           <span
-                            style={{color: item.color}}
+                            style={{ color: item.color }}
                           >
                             {item.value}
                           </span>
@@ -217,7 +217,7 @@ export default defineComponent(() => {
                       <div key={index} class="sd-item">
                         <video
                           class={`map-3d-video map-3d-video_${index}`}
-                          style="width: 100%; height: 100%;transform: scale(1.4, 0.99);"
+                          style="width: 100%; height: 100%;transform: scale(1.58, 1)"
                           src={item.src}
                           onPause={() => {
                             const icon = document.querySelector(`.play-icon_${index}`);
@@ -266,12 +266,12 @@ export default defineComponent(() => {
         {
           !!abnormalItem && (
             <div
-              v-click-outside={setState.bind(null, {abnormalItem: null})}
+              v-click-outside={setState.bind(null, { abnormalItem: null })}
               className="message-info-modal"
             >
               <i
                 className="mim-close"
-                onClick={setState.bind(null, {abnormalItem: null})}
+                onClick={setState.bind(null, { abnormalItem: null })}
               />
               <div className="mim-title">异常报警</div>
               <div className="mim-content">

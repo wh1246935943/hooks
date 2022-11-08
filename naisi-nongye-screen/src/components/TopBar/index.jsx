@@ -57,7 +57,7 @@ export default defineComponent({
           <span class="time-line"></span>
           {
             props.isBack ? (
-              <span class="go-back" onClick={router.push.bind(null, {name: 'DistrictLevel'})}></span>
+              <span class="go-back" onClick={router.push.bind(null, { name: 'DistrictLevel' })}></span>
             ) : (
               <>
                 <img class="time-w-icon" src={weather_fine} />

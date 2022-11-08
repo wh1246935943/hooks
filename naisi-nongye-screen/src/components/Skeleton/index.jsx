@@ -23,7 +23,7 @@ export default defineComponent({
   slots: {
     default: () => '',
   },
-  setup(props, {slots}) {
+  setup(props, { slots }) {
 
     onMounted(() => {
       scaleContainer();
@@ -40,7 +40,7 @@ export default defineComponent({
       };
       return urls[props.mapType]
     };
-   
+
     return () => {
       const { title, mapType, locate } = props;
       return (
@@ -56,8 +56,8 @@ export default defineComponent({
               style={{
                 background: {
                   'GIS': 'radial-gradient(ellipse closest-side, #ffffff00 54%, #051525)',
-                  'VIG': 'radial-gradient(ellipse closest-side, #ffffff00, #051525)',
-                  '3D': 'radial-gradient(ellipse, #ffffff00, #051525)',
+                  'VIG': 'radial-gradient(closest-side, rgba(255, 255, 255, 0) 25%, rgb(5, 21, 37))',
+                  '3D': 'radial-gradient(ellipse, #ffffff00 54%, #051525)',
                 }[mapType]
               }}
             ></div>

@@ -3,22 +3,24 @@
   width: 100vw;
   overflow: hidden;
   position: relative;
+
   .basic-container {
-    background-repeat: no-repeat!important;
-    background-size: 100% 100%!important;
+    background-repeat: no-repeat !important;
+    background-size: 100% 100% !important;
     position: absolute;
     top: 50%;
     left: 50%;
     transform-origin: top left;
     width: 2560px;
     height: 1280px;
-    .global-bg-shadow{
+
+    .global-bg-shadow {
       width: 100%;
       height: 100%;
       position: absolute;
       z-index: 0;
-      background: radial-gradient(ellipse closest-side,#ffffff00,#051525)
     }
+
     .content {
       width: 100%;
       height: calc(100% - 88px);
@@ -26,6 +28,7 @@
       position: relative;
       justify-content: space-between;
       padding: 0 28px;
+
       .screen-left,
       .screen-right {
         // display: inline-block;
@@ -34,24 +37,33 @@
         top: 100px;
         z-index: 999;
         width: 30%;
+
         .ant-carousel {
           height: 100%;
+
           .slick-slide {
             height: 100%;
-            & > div {
+
+            &>div {
               height: 100%;
             }
           }
+
           .slick-slider {
             height: 100%;
+
             .slick-list {
               height: 100%;
+
               .slick-track {
                 height: 100%;
-                & > div {
+
+                &>div {
                   height: 100%;
+
                   .ant-image {
                     height: 100%;
+
                     .ant-image-img {
                       height: 100%;
                     }
@@ -62,24 +74,29 @@
           }
         }
       }
+
       .screen-left {
         left: 80px;
       }
+
       .screen-right {
         right: 80px;
       }
+
       .realtime-img-group-item {
         width: 100%;
         height: 100%;
         overflow: hidden;
         background-color: rgba(0, 251, 255, 0.155);
+
         .ant-image {
           width: 100%;
           height: 100%;
         }
       }
     }
-    .bottom-under-img{
+
+    .bottom-under-img {
       width: 100%;
       height: 55px;
       position: absolute;

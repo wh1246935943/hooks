@@ -31,6 +31,7 @@ export function initResourceStatisticsChart() {
       itemGap: 50,
       textStyle: {
         color: "#91CCFF",
+        fontSize: 15
       },
       data: ["耕地面积", "林地面积", "水域面积"],
     },
@@ -40,7 +41,7 @@ export function initResourceStatisticsChart() {
         boundaryGap: false,
         axisLabel: {
           color: fontColor,
-          fontSize: "14px"
+          fontSize: 15
         },
         axisLine: {
           show: true,
@@ -104,7 +105,7 @@ export function initResourceStatisticsChart() {
         symbol: "circle",
         symbolSize: 8,
         smooth: true,
-  
+
         itemStyle: {
           normal: {
             color: "#0092f6",
@@ -140,10 +141,10 @@ export function initResourceStatisticsChart() {
         name: "林地面积",
         smooth: true,
         type: "line",
-  
+
         symbol: "circle",
         symbolSize: 8,
-  
+
         itemStyle: {
           normal: {
             color: "#00d4c7",
@@ -171,7 +172,7 @@ export function initResourceStatisticsChart() {
       {
         name: "水域面积",
         type: "line",
-  
+
         symbol: "circle",
         symbolSize: 8,
         smooth: true,
@@ -201,13 +202,13 @@ export function initResourceStatisticsChart() {
       },
     ],
   };
-  
+
   military_statistics.setOption(option);
 }
 /**
  * 孔店村页面底部中间三个
  */
- export function initChartByInfo(selector, legendData, color = []) {
+export function initChartByInfo(selector, legendData, color = []) {
   const military_statistics = echarts.init(document.getElementById(selector));
   // 绘制图表
   const military_statistics_data1 = [155, 425, 250, 345, 240, 135, 325, 155, 425, 250, 345, 240,];
@@ -237,6 +238,7 @@ export function initResourceStatisticsChart() {
       itemGap: 60,
       textStyle: {
         color: "#91CCFF",
+        fontSize: 15
       },
       data: legendData,
     },
@@ -246,7 +248,7 @@ export function initResourceStatisticsChart() {
         boundaryGap: false,
         axisLabel: {
           color: fontColor,
-          fontSize: "14px"
+          fontSize: 15
         },
         axisLine: {
           show: true,
@@ -310,7 +312,7 @@ export function initResourceStatisticsChart() {
         symbol: "circle",
         symbolSize: 8,
         smooth: true,
-  
+
         itemStyle: {
           normal: {
             color: "#0092f6",
@@ -345,7 +347,7 @@ export function initResourceStatisticsChart() {
       {
         name: legendData[1],
         type: "line",
-  
+
         symbol: "circle",
         symbolSize: 8,
         smooth: true,
@@ -375,7 +377,7 @@ export function initResourceStatisticsChart() {
       },
     ],
   };
-  
+
   military_statistics.setOption(option);
 }
 
@@ -387,7 +389,7 @@ export function initPlantingScale() {
       text: '农作物' + '\n' + '类型',
       textStyle: {
         color: 'rgba(145, 204, 255, 1)',
-        fontSize: 12,
+        fontSize: 15,
         lineHeight: 24
       },
       textAlign: 'center',
@@ -403,16 +405,16 @@ export function initPlantingScale() {
       orient: 'vertical',
       itemWidth: 8,
       itemHeight: 8,
-      itemGap: 8,
+      itemGap: 25,
       type: 'scroll',
       right: '15%',
       top: 'center',
       // padding: [10, 0],
       textStyle: {
-        fontSize: 12,
+        fontSize: 15,
         color: 'rgba(145, 204, 255, 1)',
       },
-      data: ['农作物类型1', '农作物类型2', '农作物类型3', '农作物类型4', '农作物类型5'],
+      data: ['农作物类型1', '农作物类型2', '农作物类型3', '农作物类型4'],
     },
     series: [
       {
@@ -520,11 +522,7 @@ export function initPlantingScale() {
           {
             value: 20,
             name: '',
-          },
-          {
-            value: 20,
-            name: '',
-          },
+          }
         ],
       },
       {
@@ -565,11 +563,7 @@ export function initPlantingScale() {
           {
             value: 20,
             name: '农作物类型4',
-          },
-          {
-            value: 20,
-            name: '农作物类型5',
-          },
+          }
         ],
       },
     ],

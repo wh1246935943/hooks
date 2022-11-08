@@ -5,7 +5,7 @@ import Card from '@/components/Card';
 import { initChartByInfo } from '../../chart';
 
 import './style.less';
- 
+
 export default defineComponent({
   props: {
     mapType: {
@@ -18,15 +18,15 @@ export default defineComponent({
     },
     setState: {
       type: Function,
-      default: () => {}
+      default: () => { }
     }
   },
   setup(props) {
 
     onMounted(() => {
-      initChartByInfo('zhangshifenxi', ['2021', '2022'] )
+      initChartByInfo('zhangshifenxi', ['2021', '2022'])
       initChartByInfo('touruliang', ['肥料', '农药'], ['#37FFC9', '#FFE777'])
-      initChartByInfo('suyuanshuju', ['溯源标签投放量', '溯源码扫码数'], ['#C2ADFF', '#00FEFF']  )
+      initChartByInfo('suyuanshuju', ['溯源标签投放量', '溯源码扫码数'], ['#C2ADFF', '#00FEFF'])
     });
 
     const counter = (value, index) => {
@@ -54,7 +54,7 @@ export default defineComponent({
                   <div className="dynamic-data-item">
                     <span
                       className={`dynamic-data-item_${index}`}
-                      style={{color: item.color}}
+                      style={{ color: item.color }}
                     >{counter(item.value, index)}</span>
                     <span>{item.name}</span>
                   </div>

@@ -1,26 +1,25 @@
 
 import { defineComponent, ref, reactive, VueElement } from 'vue';
-import { RouterLink, RouterView } from 'vue-router';
 
 import './style.less'
- 
+
 export default defineComponent({
   props: {
     title: {
       type: [String, VueElement],
-      default: '' 
+      default: ''
     },
     class: {
       type: String,
       default: ''
     }
   },
-  setup(props, {slots}) {
-   
+  setup(props, { slots }) {
+
     return () => {
       const { class: className, title } = props;
       return (
-        <div class={`naisi-card ${ className }`}>
+        <div class={`naisi-card ${className}`}>
           <div class="nc-card-title">
             {
               typeof title === 'string' ? (

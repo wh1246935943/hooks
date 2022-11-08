@@ -8,6 +8,7 @@
   overflow-x: clip;
   padding: 0 36px 0 20px;
   z-index: 999;
+
   .topbar_bj {
     width: 98%;
     height: 125px;
@@ -17,17 +18,21 @@
     transform: translateX(-50%);
     z-index: -1;
   }
-  & > div {
+
+  &>div {
     height: 100%;
   }
+
   .left,
   .right {
     width: 25%;
     display: flex;
     align-items: center;
   }
+
   .right {
     justify-content: flex-end;
+
     // font-family: PangMenZhengDaoRegular;
     .time-line {
       width: 2px;
@@ -36,25 +41,29 @@
       opacity: 0.35;
       margin: 0 24px;
     }
-    .time-y-m-d{
+
+    .time-y-m-d {
       font-size: 30px;
       font-family: longzhoufeng;
       font-weight: 400;
       color: #CDD6E3;
     }
-    .time-w-icon{
+
+    .time-w-icon {
       display: inline-block;
       width: 30px;
       height: 30px;
       margin-right: 12px;
     }
-    .time-w{
+
+    .time-w {
       font-size: 25px;
       font-family: Microsoft YaHei;
       font-weight: bold;
       color: #CDD6E3;
     }
-    .go-back{
+
+    .go-back {
       background-image: url('@/assets/district-level/return.png');
       background-repeat: no-repeat;
       background-size: cover;
@@ -63,19 +72,22 @@
       cursor: pointer;
     }
   }
-  .left{
-    span{
+
+  .left {
+    span {
       font-size: 24px;
       font-family: Microsoft YaHei;
       font-weight: 400;
       color: #CDD6E3;
     }
-    img{
+
+    img {
       width: 32px;
       margin-right: 24px;
       transform: translateY(2px);
     }
   }
+
   .center {
     width: 50%;
     flex: 1;

@@ -22,7 +22,7 @@ export const scaleContainer = (selector = '.basic-container') => {
  * 精准的且不会重复加速的定时器
  */
 export function poller({
-  callback = () => {},
+  callback = () => { },
   param = null,
   time = 3000,
 }) {
@@ -48,7 +48,7 @@ export function poller({
  * @param { number } speed - 滚动得速度，1为基准，如果想快则设置小于1得数，想满则设置大于1得数
  * @param { boolean } paused - 鼠标划入滚动容器时，滚动是否要暂停
  */
- export function setRollEffect({
+export function setRollEffect({
   key = '',
   content = '',
   container = '',
@@ -108,9 +108,8 @@ export function poller({
       overflow-y: hidden!important;\
     }\
     ${key} ${content} {\
-      animation: ${
-        (offsetHeight / 20) * speed
-      }s ${keyframeName} linear infinite normal;\
+      animation: ${(offsetHeight / 20) * speed
+    }s ${keyframeName} linear infinite normal;\
     }\
     ${key} ${content}:hover {\
       animation-play-state: ${paused ? 'paused' : 'unset'};

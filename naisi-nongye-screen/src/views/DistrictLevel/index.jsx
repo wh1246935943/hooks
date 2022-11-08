@@ -7,7 +7,7 @@ import { statisticsData, videoData } from './../data';
 import { initResourceStatisticsChart } from '../chart';
 
 import './style.less';
- 
+
 export default defineComponent(() => {
 
   const state = reactive({
@@ -23,7 +23,7 @@ export default defineComponent(() => {
   onMounted(() => {
     initResourceStatisticsChart()
   })
- 
+
   return () => {
     const { title, mapType, isInfoBox } = state;
 

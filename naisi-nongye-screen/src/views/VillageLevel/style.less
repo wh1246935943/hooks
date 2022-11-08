@@ -20,6 +20,7 @@
     .abnormal-data {
       height: 130px;
       overflow: hidden;
+
       .naisi-row {
         height: 35px;
         background: #176d9e5f;
@@ -100,7 +101,7 @@
 
       .naisi-col-5 {
         height: 45px;
-        background: #2190f77b;
+        background: linear-gradient(1deg, rgba(33, 144, 247, 0.26) -7px, #ffffff00);
         border-radius: 5px;
         margin-top: 10px;
         font-size: 15px;
@@ -226,7 +227,7 @@
       .wdi-icon {
         height: 83%;
         position: relative;
-        transform: translateY(-15px);
+        transform: translateY(-15px) scale(0.8);
 
         img {
           position: absolute;
@@ -240,6 +241,7 @@
 
       .wdi-value {
         text-align: center;
+        transform: translateY(-8px);
 
         span {
           font-size: 26px;
@@ -324,7 +326,8 @@
   background: url('@/assets/village-level/Pop-window.png');
   background-size: 100% 100%;
   background-repeat: no-repeat;
-  .mim-close{
+
+  .mim-close {
     display: inline-block;
     width: 25px;
     height: 25px;
@@ -333,30 +336,37 @@
     right: 20px;
     cursor: pointer;
   }
-  .mim-title{
+
+  .mim-title {
     font-size: 26px;
     font-family: Microsoft YaHei;
     font-weight: 400;
     color: #FFFFFF;
     line-height: 26px;
-    text-shadow: 0px 1px 1px rgba(0,11,10,0.43);
+    text-shadow: 0px 1px 1px rgba(0, 11, 10, 0.43);
     text-align: center;
     margin-top: 43px;
   }
-  .mim-content{
+
+  .mim-content {
     padding: 50px;
     height: 350px;
-    .mimc-item{
+
+    .mimc-item {
       font-size: 16px;
       font-family: Microsoft YaHei;
       font-weight: 400;
       color: #FFFFFF;
       display: flex;
+
       &:not(:first-child) {
         margin-top: 20px;
 
-      };
-      &::before{
+      }
+
+      ;
+
+      &::before {
         content: attr(data-label);
         display: inline-block;
         color: #FFFFFF;
