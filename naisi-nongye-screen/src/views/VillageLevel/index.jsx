@@ -1,5 +1,5 @@
 
-import { defineComponent, reactive, onMounted } from 'vue';
+import { defineComponent, reactive, onMounted, watchEffect } from 'vue';
 import Skeleton from '@/components/Skeleton';
 import Card from '@/components/Card';
 import Map from './Map';
@@ -19,6 +19,13 @@ export default defineComponent(() => {
   });
 
   const setState = (param) => {
+    if (param.hasOwnProperty('abnormalItem') && !param.abnormalItem) {
+      showBoxAnimation('hide')
+      setTimeout(() => {
+        Object.assign(state, param);
+      }, 300);
+      return
+    }
     Object.assign(state, param);
   }
 
@@ -37,7 +44,49 @@ export default defineComponent(() => {
     const item = Array.from(children).find((item) => item.contains(e.target))
     if (!item) return;
     setState({ abnormalItem: abnormalData[item.dataset.index] })
-  }
+  };
+
+  const showBoxAnimation = (type) => {
+    const box = document.querySelector('.message-info-modal');
+    if (!box) return;
+    box.style.top = '500px';
+    box.style.left = '377px';
+    box.style.transform = 'scale(0.1) ';
+    box.style.opacity = 0.1;
+    function loop(top) {
+      window.requestAnimationFrame(() => {
+        box.style.top = `${top}px`;
+        if (top > 300) loop(top - 10)
+      })
+    };
+    loop(500)
+    if (type === 'show') {
+      box.clientHeight;
+      box.style.top = '319px';
+      box.style.left = '586px';
+      box.style.transform = 'scale(1) ';
+      box.style.opacity = 1;
+    }
+  };
+
+  watchEffect((onInvalidate)=>{
+    //使用这个函数的时候会执行一次里边的代码,因为这里打印了message.value
+    //message是ref响应式变量
+    //所以后续检测到message值的变化，就会再次执行effect里边的代码
+    console.log("state.abnormalItem被修改了", state.abnormalItem);
+    showBoxAnimation('show')
+
+    //如果是下边这种情况，没有message.value
+    //那么只会在注册effect的时候执行一次，后续不再执行
+    // console.log("这次没有message被修改了")
+    onInvalidate(()=>{
+        //当组件失效，watchEffect被主动停止或者副作用即将重新执行时，这个函数会执行
+    })
+  },{
+      flush: 'post',//在组件更新后触发，这样你就可以访问更新的 DOM。
+      // flush: 'pre',//默认值，在组件更新前触发
+      // flush: 'sync',//同步触发，低效
+  });
 
   onMounted(() => {
     initPlantingScale();
