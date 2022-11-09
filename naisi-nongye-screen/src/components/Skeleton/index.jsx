@@ -2,6 +2,7 @@
 import { defineComponent, onMounted } from 'vue';
 import { scaleContainer } from '@/utils/utils.js'
 import TopBar from '../TopBar';
+import { drawDian } from './dian';
 
 import './style.less'
 
@@ -30,6 +31,8 @@ export default defineComponent({
       window.onresize = () => {
         scaleContainer();
       };
+
+      drawDian('#canvasDian', '.basic-container')
     });
 
     const getImgUrl = () => {
@@ -61,6 +64,7 @@ export default defineComponent({
                 }[mapType]
               }}
             ></div>
+            <canvas id="canvasDian" />
             <TopBar title={title} locate={locate} isBack={mapType === 'VIG'} />
             <div class="content">
               {slots?.default?.()}
