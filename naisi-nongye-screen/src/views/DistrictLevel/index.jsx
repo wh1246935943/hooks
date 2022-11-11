@@ -68,7 +68,7 @@ export default defineComponent({
                             />
                           </div>
                           <div class="sdi-data">
-                            {item.name}
+                            <span>{item.name}</span>
                             <span
                               style={{color: item.color}}
                               className={`sdid-value_${index}`}
