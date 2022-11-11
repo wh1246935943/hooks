@@ -138,6 +138,10 @@ export default defineComponent({
                     href={new URL(`@/assets/district-level/frame-1.png`, import.meta.url).href}
                   />
                   <image
+                    style="pointer-events: none;transform: translate(134px, 4px)"
+                    href={new URL(`@/assets/district-level/camera.png`, import.meta.url).href}
+                  />
+                  <image
                     style="transform: translate(195px, -9px);"
                     href={new URL(`@/assets/district-level/frame-2.png`, import.meta.url).href}
                   />

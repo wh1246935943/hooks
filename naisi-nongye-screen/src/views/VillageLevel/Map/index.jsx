@@ -1,8 +1,9 @@
 
-import { defineComponent, onMounted } from 'vue';
-import { dynamicData } from './../../data';
+import { defineComponent, onMounted, onBeforeMount, reactive } from 'vue';
+import axios from 'axios';
 import Card from '@/components/Card';
 import { initChartByInfo } from '../../chart';
+import { counter } from '../../count';
 
 import './style.less';
 
@@ -23,28 +24,23 @@ export default defineComponent({
   },
   setup(props) {
 
+    const state = reactive({
+      dynamicData: []
+    });
+
+    onBeforeMount(async () => {
+      const resp = await axios.get('src/views/data.json');
+      state.dynamicData = resp.data.list
+    })
+
     onMounted(() => {
       initChartByInfo('zhangshifenxi', ['2021', '2022'])
       initChartByInfo('touruliang', ['肥料', '农药'], ['#37FFC9', '#FFE777'])
       initChartByInfo('suyuanshuju', ['溯源标签投放量', '溯源码扫码数'], ['#C2ADFF', '#00FEFF'])
     });
 
-    const counter = (value, index) => {
-      setTimeout(() => {
-        const dom = document.querySelector(`.dynamic-data-item_${index}`);
-        function loop(count) {
-          dom.innerHTML = count;
-          if (count >= value) return;
-          setTimeout(() => {
-            loop(count + 1)
-          }, 80)
-        };
-        loop(0)
-      }, 0)
-    }
-
     return () => {
-      const { mapType, isInfoBox, setState } = props;
+      const { dynamicData } = state;
       return (
         <div class="vl-center">
           <div className="vlc-top-realtime-data naisi-row">
@@ -55,7 +51,15 @@ export default defineComponent({
                     <span
                       className={`dynamic-data-item_${index}`}
                       style={{ color: item.color }}
-                    >{counter(item.value, index)}</span>
+                    >
+                    {
+                      counter({
+                        maxValue: item.value,
+                        callBack: (current) => {
+                          document.querySelector(`.dynamic-data-item_${index}`).innerHTML = current;
+                        }
+                      })
+                    }</span>
                     <span>{item.name}</span>
                   </div>
                 )

@@ -45,7 +45,9 @@ export default defineComponent(() => {
     if (!item) return;
     setState({ abnormalItem: abnormalData[item.dataset.index] })
   };
-
+  /**
+   * 告警信息弹出关闭动画
+   */
   const showBoxAnimation = (type) => {
     const box = document.querySelector('.message-info-modal');
     if (!box) return;
@@ -68,24 +70,23 @@ export default defineComponent(() => {
       box.style.opacity = 1;
     }
   };
-
+  /**
+   * 监听某个状态的改变
+   */
   watchEffect((onInvalidate)=>{
-    //使用这个函数的时候会执行一次里边的代码,因为这里打印了message.value
-    //message是ref响应式变量
-    //所以后续检测到message值的变化，就会再次执行effect里边的代码
-    console.log("state.abnormalItem被修改了", state.abnormalItem);
+    state.abnormalItem
     showBoxAnimation('show')
-
-    //如果是下边这种情况，没有message.value
-    //那么只会在注册effect的时候执行一次，后续不再执行
-    // console.log("这次没有message被修改了")
-    onInvalidate(()=>{
-        //当组件失效，watchEffect被主动停止或者副作用即将重新执行时，这个函数会执行
-    })
+    /**
+     * 当组件失效，watchEffect被主动停止或者副作用即将重新执行时，这个函数会执行
+     */
+    onInvalidate(()=>{})
   },{
-      flush: 'post',//在组件更新后触发，这样你就可以访问更新的 DOM。
-      // flush: 'pre',//默认值，在组件更新前触发
-      // flush: 'sync',//同步触发，低效
+    /**
+     * post: 在组件更新后触发，这样你就可以访问更新的 DOM。
+     * pre: 默认值，在组件更新前触发
+     * sync: 同步触发，低效
+     */
+    flush: 'post'
   });
 
   onMounted(() => {
@@ -178,7 +179,7 @@ export default defineComponent(() => {
                               }}
                             />
                           </div>
-                          <div class="naisi-col-5" style="font-size: 15px">
+                          <div class="naisi-col-5" style="font-size: 17px">
                             {item.title}
                           </div>
                           <div class="naisi-col-4" style={{ color: item.color }}>

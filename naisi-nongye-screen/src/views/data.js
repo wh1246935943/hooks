@@ -1,63 +1,73 @@
 export const statisticsData = [
   {
     name: '高标准农田建设数量',
-    number: 4362,
+    number: 3322,
     unit: '万亩',
     color: '#00FFFC',
+    icon: 'farmland'
   },
   {
-    name: '高标准农在建数量',
-    number: 4362,
+    name: '高标准农田在建数量',
+    number: 4261,
     unit: '万亩',
-    color: '#1589FF'
+    color: '#1589FF',
+    icon: 'farmland'
   },
   {
-    name: '高标准农在建数量',
-    number: 4362,
+    name: '辖区土地总面积',
+    number: 3453,
     unit: '万亩',
-    color: '#01FFBA'
+    color: '#01FFBA',
+    icon: 'land'
   },
   {
-    name: '高标准农在建数量',
-    number: 4362,
+    name: '耕地面积',
+    number: 2423,
     unit: '万亩',
-    color: '#FFE777'
+    color: '#FFE777',
+    icon: 'area'
   },
   {
-    name: '高标准农在建数量',
-    number: 4362,
+    name: '粮食生产功能区面积',
+    number: 5464,
     unit: '万亩',
-    color: '#1589FF'
+    color: '#1589FF',
+    icon: 'grain-depot'
   },
   {
-    name: '高标准农在建数量',
-    number: 4362,
+    name: '人均耕种面积',
+    number: 5435,
     unit: '万亩',
-    color: '#01FFBA'
+    color: '#01FFBA',
+    icon: 'plough-and-sow'
   },
   {
-    name: '高标准农在建数量',
-    number: 4362,
+    name: '农产品生产保护区面积',
+    number: 1231,
     unit: '万亩',
-    color: '#FFE777'
+    color: '#FFE777',
+    icon: 'reserve'
   },
   {
-    name: '高标准农在建数量',
-    number: 4362,
+    name: '林地面积',
+    number: 5675,
     unit: '万亩',
-    color: '#00FFFC'
+    color: '#00FFFC',
+    icon: 'woodland'
   },
   {
-    name: '高标准农在建数量',
-    number: 4362,
+    name: '水域面积',
+    number: 867,
     unit: '万亩',
-    color: '#1589FF'
+    color: '#1589FF',
+    icon: 'waters'
   },
   {
-    name: '高标准农在建数量',
-    number: 4362,
+    name: '农业产业园区数量',
+    number: 4563,
     unit: '万亩',
-    color: '#FFE777'
+    color: '#FFE777',
+    icon: 'area-of-a-garden'
   }
 ];
 
@@ -95,7 +105,7 @@ export const videoData = [
 ]
 
 export const pointData = [
-  { x: 145, y: 189, name: 'xxxx' },
+  { x: 145, y: 247, name: 'xxxx' },
   { x: 237, y: 189, name: 'xxxx' },
   { x: 349, y: 250, name: 'xxxx' },
   { x: 470, y: 190, name: 'xxxx' },
@@ -178,12 +188,4 @@ export const realtimeMonitor = [
   { color: '#37FFC9', name: '降雨量', icon: 'rainfall', value: '25', unit: 'mm' },
   { color: '#FFE777', name: '土壤温度', icon: 'soil-temperature', value: '15', unit: '℃' },
   { color: '#00B5FF', name: '土壤湿度', icon: 'soil-moisture', value: '25', unit: '%rh' },
-]
-
-export const dynamicData = [
-  { color: '#00B5FF', name: '虫情测报(台)', value: 1 },
-  { color: '#37FFC9', name: '气象监测(台)', value: 2 },
-  { color: '#19D6FF', name: '土壤墒情监测(台)', value: 2 },
-  { color: '#FFE777', name: '杀虫灯(台)', value: 10 },
-  { color: '#C2ADFF', name: '田间摄像头(台) ', value: 20 }
 ]

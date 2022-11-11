@@ -2,6 +2,7 @@
 import { defineComponent, onMounted } from 'vue';
 import { scaleContainer } from '@/utils/utils.js'
 import TopBar from '../TopBar';
+import { drawDian } from './dian';
 
 import './style.less'
 
@@ -30,6 +31,8 @@ export default defineComponent({
       window.onresize = () => {
         scaleContainer();
       };
+
+      drawDian('#canvasDian', '.basic-container')
     });
 
     const getImgUrl = () => {
@@ -55,12 +58,13 @@ export default defineComponent({
               class="global-bg-shadow"
               style={{
                 background: {
-                  'GIS': 'radial-gradient(ellipse closest-side, #ffffff00 54%, #051525)',
+                  'GIS': 'radial-gradient(23% 45%, rgba(255, 255, 255, 0) 51%, rgb(5, 21, 37) 146%)',
                   'VIG': 'radial-gradient(closest-side, rgba(255, 255, 255, 0) 25%, rgb(5, 21, 37))',
                   '3D': 'radial-gradient(ellipse, #ffffff00 54%, #051525)',
                 }[mapType]
               }}
             ></div>
+            <canvas id="canvasDian" />
             <TopBar title={title} locate={locate} isBack={mapType === 'VIG'} />
             <div class="content">
               {slots?.default?.()}
