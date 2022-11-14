@@ -3,17 +3,17 @@ import * as echarts from 'echarts';
  * 3D和GIS页面的右上角的图表
  */
 export function initResourceStatisticsChart() {
-  const military_statistics = echarts.init(document.getElementById('military-statistics'));
+  const military_statistics = echarts.init(document.getElementById('military-statistics') as HTMLElement);
   // 绘制图表
-  const military_statistics_data1 = [155, 425, 250, 345, 240, 135, 325, 155, 425, 250, 345, 240,];
-  const military_statistics_data2 = [135, 325, 155, 425, 250, 345, 240, 135, 325, 155, 425, 250,];
-  const military_statistics_data3 = [345, 240, 135, 325, 155, 425, 250, 345, 240, 135, 325, 155];
+  const military_statistics_data1 = [155, 340, 250, 345, 240, 135, 325, 155, 340, 250, 345, 240,];
+  const military_statistics_data2 = [135, 325, 155, 340, 250, 345, 240, 135, 325, 155, 340, 250,];
+  const military_statistics_data3 = [345, 240, 135, 325, 155, 340, 250, 345, 240, 135, 325, 155];
   var fontColor = "#91CCFF";
   var option = {
     grid: {
       left: "0",
       right: "20",
-      top: "5%",
+      top: 40,
       bottom: "5%",
       containLabel: true,
     },
@@ -24,14 +24,14 @@ export function initResourceStatisticsChart() {
     legend: {
       show: true,
       x: "center",
-      y: "0",
+      y: 0,
       icon: "stack",
       itemWidth: 10,
       itemHeight: 10,
       itemGap: 50,
       textStyle: {
         color: "#91CCFF",
-        fontSize: 15
+        fontSize: 17
       },
       data: ["耕地面积", "林地面积", "水域面积"],
     },
@@ -41,7 +41,7 @@ export function initResourceStatisticsChart() {
         boundaryGap: false,
         axisLabel: {
           color: fontColor,
-          fontSize: 15
+          fontSize: 17
         },
         axisLine: {
           show: true,
@@ -64,7 +64,7 @@ export function initResourceStatisticsChart() {
           "马场村",
           "欢灯村",
           "孔店村",
-          "刘庄村",
+          // "刘庄村",
           "沿村"
         ],
       },
@@ -73,11 +73,12 @@ export function initResourceStatisticsChart() {
       {
         type: "value",
         min: 0,
-        max: 500,
+        max: 400,
         axisLabel: {
           formatter: "{value}",
           textStyle: {
             color: fontColor,
+            fontSize: 14
           },
         },
         axisLine: {
@@ -208,19 +209,19 @@ export function initResourceStatisticsChart() {
 /**
  * 孔店村页面底部中间三个
  */
-export function initChartByInfo(selector, legendData, color = []) {
-  const military_statistics = echarts.init(document.getElementById(selector));
+export function initChartByInfo(selector: string, legendData: Array<number | string>, color: string[] = []) {
+  const military_statistics = echarts.init(document.getElementById(selector) as HTMLElement);
   // 绘制图表
-  const military_statistics_data1 = [155, 425, 250, 345, 240, 135, 325, 155, 425, 250, 345, 240,];
-  const military_statistics_data2 = [135, 325, 155, 425, 250, 345, 240, 135, 325, 155, 425, 250,];
-  const military_statistics_data3 = [345, 240, 135, 325, 155, 425, 250, 345, 240, 135, 325, 155];
+  const military_statistics_data1 = [155, 370, 250, 345, 240, 135, 325, 155, 370, 250, 345, 240,];
+  const military_statistics_data2 = [135, 325, 155, 370, 250, 345, 240, 135, 325, 155, 370, 250,];
+  const military_statistics_data3 = [345, 240, 135, 325, 155, 370, 250, 345, 240, 135, 325, 155];
   var fontColor = "#91CCFF";
   var option = {
     color,
     grid: {
       left: "0",
       right: "20",
-      top: "5%",
+      top: 40,
       bottom: "5%",
       containLabel: true,
     },
@@ -238,7 +239,7 @@ export function initChartByInfo(selector, legendData, color = []) {
       itemGap: 60,
       textStyle: {
         color: "#91CCFF",
-        fontSize: 15
+        fontSize: 17
       },
       data: legendData,
     },
@@ -248,7 +249,7 @@ export function initChartByInfo(selector, legendData, color = []) {
         boundaryGap: false,
         axisLabel: {
           color: fontColor,
-          fontSize: 15
+          fontSize: 17
         },
         axisLine: {
           show: true,
@@ -280,11 +281,12 @@ export function initChartByInfo(selector, legendData, color = []) {
       {
         type: "value",
         min: 0,
-        max: 500,
+        max: 400,
         axisLabel: {
           formatter: "{value}",
           textStyle: {
             color: fontColor,
+            fontSize: 14
           },
         },
         axisLine: {
@@ -382,20 +384,27 @@ export function initChartByInfo(selector, legendData, color = []) {
 }
 
 export function initPlantingScale() {
-  const chart1 = echarts.init(document.querySelector('.ps-chart'));
+  const chart1 = echarts.init(document.querySelector('.ps-chart') as HTMLElement);
   chart1.setOption({
     title: {
       show: true,
       text: '农作物' + '\n' + '类型',
       textStyle: {
         color: 'rgba(145, 204, 255, 1)',
-        fontSize: 15,
+        fontSize: 17,
         lineHeight: 24
       },
       textAlign: 'center',
       textVerticalAlign: 'center',
       left: '28.5%',
       top: '47%',
+    },
+    grid: {
+      left: "0",
+      right: "0",
+      top: "0",
+      bottom: "0",
+      containLabel: true,
     },
     tooltip: {
       trigger: 'item',
@@ -411,7 +420,7 @@ export function initPlantingScale() {
       top: 'center',
       // padding: [10, 0],
       textStyle: {
-        fontSize: 15,
+        fontSize: 17,
         color: 'rgba(145, 204, 255, 1)',
       },
       data: ['农作物类型1', '农作物类型2', '农作物类型3', '农作物类型4'],
@@ -529,7 +538,7 @@ export function initPlantingScale() {
         name: '农作物类型',
         type: 'pie',
         zlevel: 3,
-        radius: ['63%', '70%'],
+        radius: ['70%', '80%'],
         center: ['30%', '50%'],
         color: ['rgba(255, 231, 119, 1)',
           'rgba(90, 175, 255, 1)',
@@ -543,7 +552,7 @@ export function initPlantingScale() {
           show: false,
         },
         itemStyle: {
-          shadowBlur: 15,
+          shadowBlur: 17,
           shadowColor: 'rgba(0, 0, 0, 0.3)',
           borderColor: '#0a1a2a',
         },

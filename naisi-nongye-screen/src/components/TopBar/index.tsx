@@ -9,6 +9,13 @@ import weather_fine from '@/assets/village-level/weather_fine.png';
 
 import './style.less';
 
+interface Props {
+  title: string,
+  locate: string,
+  temperature: string,
+  isBack: boolean
+}
+
 export default defineComponent({
   props: {
     title: {
@@ -28,7 +35,7 @@ export default defineComponent({
       default: false
     }
   },
-  setup(props) {
+  setup(props: Props) {
 
     const router = useRouter()
 
@@ -36,7 +43,7 @@ export default defineComponent({
       const d = {
         callback: () => {
           const ymd = moment().format('HH:mm:ss');
-          document.querySelector('.time-y-m-d').innerHTML = ymd;
+          (document.querySelector('.time-y-m-d') as HTMLElement).innerHTML = ymd;
           poller(d)
         },
         time: 1000

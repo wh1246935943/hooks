@@ -1,12 +1,12 @@
-export const drawDian = (selector, container) => {
-  const canvas = document.querySelector(selector);
+export const drawDian = (selector: string, container: string) => {
+  const canvas = document.querySelector(selector) as HTMLCanvasElement;
 
-  const ctx = canvas.getContext("2d");
+  const ctx = canvas.getContext("2d") as CanvasRenderingContext2D ;
 
-  const {clientWidth: width, clientHeight: height} = document.querySelector(container);
+  const {clientWidth: width, clientHeight: height} = document.querySelector(container)as HTMLElement;
 
-  canvas.setAttribute('width', width);
-  canvas.setAttribute('height', height);
+  canvas.setAttribute('width', width as unknown as string);
+  canvas.setAttribute('height', height as unknown as string);
   canvas.style.background = '#00000000';
 
   const snows = Array.from({length: 200}, () => {
@@ -31,7 +31,7 @@ export const drawDian = (selector, container) => {
       ctx.fillStyle = `rgb(255 255 255 / 50%)`
 
       ctx.strokeStyle = '#00000000'
-      ctx.rect(item.x, item.y, 3, 3);
+      ctx.rect(item.x, item.y, 2, 2);
       
       ctx.stroke();
     });

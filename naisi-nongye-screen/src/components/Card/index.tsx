@@ -1,7 +1,12 @@
 
 import { defineComponent, ref, reactive, VueElement } from 'vue';
 
-import './style.less'
+import './style.less';
+
+interface Props {
+  title: string | VueElement,
+  class: string
+}
 
 export default defineComponent({
   props: {
@@ -14,7 +19,7 @@ export default defineComponent({
       default: ''
     }
   },
-  setup(props, { slots }) {
+  setup(props: Props, { slots }) {
 
     return () => {
       const { class: className, title } = props;

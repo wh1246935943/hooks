@@ -1,41 +1,62 @@
-.dl-center {
+.dl-center-map {
   flex: 1;
   flex-shrink: 0;
+  position: relative;
 
   .map-switch-bar {
     width: 924px;
     height: 108px;
-    opacity: 0.72;
-    margin-left: 50%;
+    left: 50%;
     transform: translateX(-50%) translatey(-15%);
     text-align: center;
     background-size: 100% 100%;
     background-repeat: no-repeat;
+    position: absolute;
+
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      position: absolute;
+      top: 30px;
+      left: 0px;
+      background-image: url('@/assets/district-level/arrowhead.png');
+    }
+
+    &::after {
+      content: '';
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      position: absolute;
+      top: 30px;
+      right: 0px;
+      transform: rotate(90deg);
+      background-image: url('@/assets/district-level/arrowhead.png');
+    }
 
     .map-type {
       margin: 0 70px;
       font-size: 24px;
       font-family: Microsoft YaHei;
       font-weight: bold;
-      color: #FFFfff;
+      color: #E5F6FF;
       margin-top: 61px;
       display: inline-block;
       cursor: pointer;
 
       &.map-type_active {
-        color: #FFFB5F;
+        color: #FFF662;
       }
     }
   }
 
   .map-svg {
-    // width: 1337px;
-    // height: 859px;
-    // opacity: 0.3;
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -45%) scale(1.7);
 
     .image-3D {
       width: 100%;

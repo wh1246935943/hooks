@@ -1,5 +1,5 @@
 
-import { defineComponent, reactive, onMounted, watchEffect } from 'vue';
+import { defineComponent, reactive, onMounted, watchEffect, VueElement } from 'vue';
 import Skeleton from '@/components/Skeleton';
 import Card from '@/components/Card';
 import Map from './Map';
@@ -9,16 +9,28 @@ import { setRollEffect } from '@/utils/utils'
 
 import './style.less';
 
+interface AbnormalItem {
+  [key: string]: string
+}
+
+interface State {
+  title?: string,
+  mapType?: MapType,
+  isInfoBox?: boolean,
+  abnormalItem: AbnormalItem | null
+}
+
 export default defineComponent(() => {
 
-  const state = reactive({
+  const state = reactive<State>({
     title: '农业监控数据展示平台',
     mapType: 'VIG',
     isInfoBox: true,
     abnormalItem: null
   });
 
-  const setState = (param) => {
+
+  const setState = (param: State) => {
     if (param.hasOwnProperty('abnormalItem') && !param.abnormalItem) {
       showBoxAnimation('hide')
       setTimeout(() => {
@@ -29,7 +41,7 @@ export default defineComponent(() => {
     Object.assign(state, param);
   }
 
-  const getImageUrl = (name) => {
+  const getImageUrl = (name: string) => {
     return new URL(`../../assets/village-level/${name}.png`, import.meta.url).href
   }
   /**
@@ -38,54 +50,59 @@ export default defineComponent(() => {
    * 在列表的滚动效果实现时会对元素拷贝，
    * 此时点击新拷贝的元素点击事件将会消失
    */
-  const openAbnormalBox = (e) => {
+  const openAbnormalBox = (e: Event) => {
     e.stopPropagation();
-    const { children } = e.currentTarget;
-    const item = Array.from(children).find((item) => item.contains(e.target))
-    if (!item) return;
-    setState({ abnormalItem: abnormalData[item.dataset.index] })
-  };
+    const { children } = e.currentTarget as VueElement ;
+    const item = Array.from(children).find((item) => item.contains(e.target as Node)) as HTMLElement;
 
-  const showBoxAnimation = (type) => {
-    const box = document.querySelector('.message-info-modal');
+    if (!(item instanceof HTMLElement)) return;
+
+    setState({ abnormalItem: abnormalData[item.dataset.index as unknown as number] })
+  };
+  /**
+   * 告警信息弹出关闭动画
+   */
+  const showBoxAnimation = (type: 'show' | 'hide') => {
+    const box = document.querySelector('.message-info-modal') as VueElement;
     if (!box) return;
     box.style.top = '500px';
     box.style.left = '377px';
-    box.style.transform = 'scale(0.1) ';
-    box.style.opacity = 0.1;
-    function loop(top) {
+    box.style.transform = 'scale(0.1)';
+    box.style.opacity = '0.1';
+
+    function loop<T extends number>(top: T): void {
       window.requestAnimationFrame(() => {
         box.style.top = `${top}px`;
         if (top > 300) loop(top - 10)
       })
     };
-    loop(500)
+    loop(500);
+
     if (type === 'show') {
       box.clientHeight;
       box.style.top = '319px';
       box.style.left = '586px';
       box.style.transform = 'scale(1) ';
-      box.style.opacity = 1;
+      box.style.opacity = '1';
     }
   };
-
+  /**
+   * 监听某个状态的改变
+   */
   watchEffect((onInvalidate)=>{
-    //使用这个函数的时候会执行一次里边的代码,因为这里打印了message.value
-    //message是ref响应式变量
-    //所以后续检测到message值的变化，就会再次执行effect里边的代码
-    console.log("state.abnormalItem被修改了", state.abnormalItem);
+    state.abnormalItem
     showBoxAnimation('show')
-
-    //如果是下边这种情况，没有message.value
-    //那么只会在注册effect的时候执行一次，后续不再执行
-    // console.log("这次没有message被修改了")
-    onInvalidate(()=>{
-        //当组件失效，watchEffect被主动停止或者副作用即将重新执行时，这个函数会执行
-    })
+    /**
+     * 当组件失效，watchEffect被主动停止或者副作用即将重新执行时，这个函数会执行
+     */
+    onInvalidate(()=>{})
   },{
-      flush: 'post',//在组件更新后触发，这样你就可以访问更新的 DOM。
-      // flush: 'pre',//默认值，在组件更新前触发
-      // flush: 'sync',//同步触发，低效
+    /**
+     * post: 在组件更新后触发，这样你就可以访问更新的 DOM。
+     * pre: 默认值，在组件更新前触发
+     * sync: 同步触发，低效
+     */
+    flush: 'post'
   });
 
   onMounted(() => {
@@ -119,7 +136,7 @@ export default defineComponent(() => {
               </div>
             </Card>
             <Card title="异常监测" style="margin-top: 30px;" class="abnormal-data-key">
-              <div className="abnormal-data">
+              <div class="abnormal-data">
                 <div onClick={openAbnormalBox}>
                   {
                     abnormalData.map((item, index) => {
@@ -149,7 +166,7 @@ export default defineComponent(() => {
               </div>
             </Card>
             <Card title="绿色防控" style="margin-top: 30px;">
-              <div className="green-fangkong naisi-row">
+              <div class="green-fangkong naisi-row">
                 <div class="naisi-col-6 gf-icon">
                   <img
                     src={getImageUrl('insect-bj1')}
@@ -178,7 +195,7 @@ export default defineComponent(() => {
                               }}
                             />
                           </div>
-                          <div class="naisi-col-5" style="font-size: 15px">
+                          <div class="naisi-col-5" style="font-size: 17px">
                             {item.title}
                           </div>
                           <div class="naisi-col-4" style={{ color: item.color }}>
@@ -192,33 +209,29 @@ export default defineComponent(() => {
               </div>
             </Card>
             <Card title="种植规模" style="margin-top: 30px;">
-              <div className="planting-scale">
-                <div className="naisi-row-sa">
-                  <div className="naisi-col-5">
+              <div class="planting-scale">
+                <div class="naisi-row-sa">
+                  <div class="naisi-col-5">
                     园区总面积<span>2456</span>㎡
                   </div>
-                  <div className="naisi-col-5">
+                  <div class="naisi-col-5">
                     农作物类型<span>2456</span>种
                   </div>
                 </div>
-                <div className="ps-chart">
+                <div class="ps-chart">
 
                 </div>
               </div>
             </Card>
           </div>
-          <Map
-            mapType={mapType}
-            isInfoBox={isInfoBox}
-            setState={setState}
-          />
+          <Map />
           <div class="dl-right">
             <Card title="天气预报">
               <div class="weather-forecast naisi-row">
                 {
                   weatherData.map((item) => {
                     return (
-                      <div className="weather-data-item">
+                      <div class="weather-data-item">
                         <span>{item.desc}</span>
                         <span>{item.date}</span>
                         <img src={getImageUrl(item.icon)} />
@@ -235,15 +248,15 @@ export default defineComponent(() => {
                 {
                   realtimeMonitor.map((item) => {
                     return (
-                      <div className="weather-data-item">
+                      <div class="weather-data-item">
                         <div class="wdi-icon">
                           <img src={getImageUrl('bottom')} />
                           <img
-                            className="position-center"
+                            class="position-center"
                             src={getImageUrl(item.icon)}
                           />
                         </div>
-                        <div className="wdi-value">
+                        <div class="wdi-value">
                           {item.name}
                           <span
                             style={{ color: item.color }}
@@ -259,7 +272,7 @@ export default defineComponent(() => {
               </div>
             </Card>
             <Card title="监控视频" style="margin-top: 30px">
-              <div className="video-data">
+              <div class="video-data">
                 {
                   videoData.slice(0, 4).map((item, index) => {
                     return (
@@ -269,17 +282,17 @@ export default defineComponent(() => {
                           style="width: 100%; height: 100%;transform: scale(1.58, 1)"
                           src={item.src}
                           onPause={() => {
-                            const icon = document.querySelector(`.play-icon_${index}`);
+                            const icon = document.querySelector(`.play-icon_${index}`) as VueElement;
                             icon.style.display = ''
                           }}
                           onPlay={() => {
-                            const icon = document.querySelector(`.play-icon_${index}`);
-                            const preview = document.querySelector(`.preview-img_${index}`);
+                            const icon = document.querySelector(`.play-icon_${index}`) as VueElement;
+                            const preview = document.querySelector(`.preview-img_${index}`) as VueElement;
                             icon.style.display = 'none';
                             preview.style.display = 'none'
                           }}
                           onClick={(e) => {
-                            const video = document.querySelector(`.map-3d-video_${index}`);
+                            const video = document.querySelector(`.map-3d-video_${index}`) as HTMLAudioElement;
                             if (video.paused) return;
                             video.pause();
                           }}
@@ -288,7 +301,7 @@ export default defineComponent(() => {
                           class={`position-center play-icon_${index}`}
                           src={new URL(`@/assets/district-level/broadcast.png`, import.meta.url).href}
                           onClick={(e) => {
-                            const video = document.querySelector(`.map-3d-video_${index}`);
+                            const video = document.querySelector(`.map-3d-video_${index}`) as HTMLAudioElement;
                             if (!video?.paused) return;
                             video.play();
                           }}
@@ -297,7 +310,7 @@ export default defineComponent(() => {
                           class={`preview-img preview-img_${index}`}
                           src={new URL(`@/assets/village-level/pic-3.png`, import.meta.url).href}
                         />
-                        <div className="info-bar">
+                        <div class="info-bar">
                           <img
                             src={new URL(`@/assets/district-level/monitor.png`, import.meta.url).href}
                           />
@@ -316,19 +329,19 @@ export default defineComponent(() => {
           !!abnormalItem && (
             <div
               v-click-outside={setState.bind(null, { abnormalItem: null })}
-              className="message-info-modal"
+              class="message-info-modal"
             >
               <i
-                className="mim-close"
+                class="mim-close"
                 onClick={setState.bind(null, { abnormalItem: null })}
               />
-              <div className="mim-title">异常报警</div>
-              <div className="mim-content">
-                <div className="mimc-item" data-label="设备编号:"><div>{abnormalItem.number}</div></div>
-                <div className="mimc-item" data-label="报警事件:"><div>{abnormalItem.time}</div></div>
-                <div className="mimc-item" data-label="报警位置:"><div>淮南市孔店乡安塘村</div></div>
-                <div className="mimc-item" data-label="设备状态:"><div>温度过高</div></div>
-                <div className="mimc-item" data-label="详情信息:"><div>温度过高温度过高温度过高温度过高温度过高温度过高温度过高温度过高温度</div></div>
+              <div class="mim-title">异常报警</div>
+              <div class="mim-content">
+                <div class="mimc-item" data-label="设备编号:"><div>{abnormalItem.number}</div></div>
+                <div class="mimc-item" data-label="报警事件:"><div>{abnormalItem.time}</div></div>
+                <div class="mimc-item" data-label="报警位置:"><div>淮南市孔店乡安塘村</div></div>
+                <div class="mimc-item" data-label="设备状态:"><div>温度过高</div></div>
+                <div class="mimc-item" data-label="详情信息:"><div>温度过高温度过高温度过高温度过高温度过高温度过高温度过高温度过高温度</div></div>
               </div>
             </div>
           )
