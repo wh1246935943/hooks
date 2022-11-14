@@ -52,18 +52,30 @@ export default defineComponent(() => {
    */
   const openAbnormalBox = (e: Event) => {
     e.stopPropagation();
+<<<<<<< HEAD:naisi-nongye-screen/src/views/VillageLevel/index.tsx
     const { children } = e.currentTarget as VueElement ;
     const item = Array.from(children).find((item) => item.contains(e.target as Node)) as HTMLElement;
 
     if (!(item instanceof HTMLElement)) return;
 
     setState({ abnormalItem: abnormalData[item.dataset.index as unknown as number] })
+=======
+    const { children } = e.currentTarget;
+    const item = Array.from(children).find((item) => item.contains(e.target))
+    if (!item) return;
+    setState({ abnormalItem: abnormalData[item.dataset.index] })
+>>>>>>> a0edc1b940156fe349a3197411db02245c8a4e1e:naisi-nongye-screen/src/views/VillageLevel/index.jsx
   };
   /**
    * 告警信息弹出关闭动画
    */
+<<<<<<< HEAD:naisi-nongye-screen/src/views/VillageLevel/index.tsx
   const showBoxAnimation = (type: 'show' | 'hide') => {
     const box = document.querySelector('.message-info-modal') as VueElement;
+=======
+  const showBoxAnimation = (type) => {
+    const box = document.querySelector('.message-info-modal');
+>>>>>>> a0edc1b940156fe349a3197411db02245c8a4e1e:naisi-nongye-screen/src/views/VillageLevel/index.jsx
     if (!box) return;
     box.style.top = '500px';
     box.style.left = '377px';
